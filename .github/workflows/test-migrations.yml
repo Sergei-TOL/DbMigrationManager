@@ -30,12 +30,17 @@ jobs:
 
 
       - name: Wait for PostgreSQL to be ready
-        run: sleep 30 # Add a delay to ensure PostgreSQL is fully ready
+        run: |
+          while ! nc -z postgres 5432; do
+            echo "Waiting for PostgreSQL to start..."
+            sleep 1
+          done
+        timeout-minutes: 1
 
       - name: Run Migrations
         uses: ./
         with:
-          connection-string-host: localhost
+          connection-string-host: postgres
           connection-string-port: 5432
           connection-string-database: testdb
           connection-string-username: postgres
