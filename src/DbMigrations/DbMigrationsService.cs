@@ -19,9 +19,6 @@ public class DbMigrationsService(
 
     public async Task EnsureDatabaseMigration(string connectionString, string migrationsScriptsPath, string idempotentScriptsPath)
     {
-        _logger.LogInformation($"Using migrations scripts from: {migrationsScriptsPath}");
-        _logger.LogInformation($"Using idempotent scripts from: {idempotentScriptsPath}");
-
         ApplyDbUpMigrations(connectionString, migrationsScriptsPath);
 
         await idempotentScriptService.ApplyIdempotentScripts(connectionString, idempotentScriptsPath);
