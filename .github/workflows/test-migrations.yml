@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run Migrations
-        uses: ./
+        uses: Sergei-TOL/DbMigrationManager@v1
         with:
           connection-string-host: postgres
           connection-string-port: 5432
