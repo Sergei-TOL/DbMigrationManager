@@ -41,6 +41,8 @@ jobs:
 
       - name: Verify Migrations
         run: |
-          # Check if the table was created
-          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "CALL insert_into_test_table('test_record');"
-          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "SELECT * FROM test_table;"
+          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "
+            -- Check if the procedure and table was created
+            CALL insert_into_test_table('test_record');
+            SELECT * FROM test_table;
+          "
