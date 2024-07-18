@@ -1,0 +1,46 @@
+name: Test Migrations
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-migrations:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_PASSWORD: testpassword
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Migrations
+        uses: ./
+        with:
+          connection-string-host: localhost
+          connection-string-port: 5432
+          connection-string-database: testdb
+          connection-string-username: postgres
+          connection-string-password: testpassword
+          migrations-scripts-path: "./tests/simple_test/migrations-scripts"
+          idempotent-scripts-path: "./tests/simple_test/idempotent-scripts"
+
+      - name: Verify Migrations
+        run: |
+          # Check if the table was created
+          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "CALL insert_into_test_table('test_record');"
+          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "SELECT * FROM test_table;"

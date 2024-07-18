@@ -18,10 +18,10 @@ inputs:
     required: false
   aws-sm-region:
     description: "AWS Secret Manager region"
-    required: true
+    required: false
   aws-sm-db-credentials-key:
     description: "AWS Secret Manager key for database credentials in json: {username, password}"
-    required: true
+    required: false
   migrations-scripts-path:
     description: "Path to migration scripts"
     required: true
