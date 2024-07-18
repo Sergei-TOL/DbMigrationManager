@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMigrations", "DbMigrations\DbMigrations.csproj", "{A96B7C55-541F-4B3A-8ED3-4960B57D2320}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMigrationsConsole", "DbMigrationsConsole\DbMigrationsConsole.csproj", "{8D1F91CD-6E2D-488A-86A3-FD0E2A4F5F60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A96B7C55-541F-4B3A-8ED3-4960B57D2320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A96B7C55-541F-4B3A-8ED3-4960B57D2320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A96B7C55-541F-4B3A-8ED3-4960B57D2320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A96B7C55-541F-4B3A-8ED3-4960B57D2320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1F91CD-6E2D-488A-86A3-FD0E2A4F5F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1F91CD-6E2D-488A-86A3-FD0E2A4F5F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1F91CD-6E2D-488A-86A3-FD0E2A4F5F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1F91CD-6E2D-488A-86A3-FD0E2A4F5F60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51CDA7BE-87FC-4DE0-99EB-442EA7C7FF4E}
+	EndGlobalSection
+EndGlobal
