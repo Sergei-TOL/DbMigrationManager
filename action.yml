@@ -34,12 +34,12 @@ runs:
   using: "docker"
   image: "Dockerfile"
   env:
-    DbMigrationsSettings__ConnectionStringData__Host: ${{ inputs.connection-string-host }}
-    DbMigrationsSettings__ConnectionStringData__Port: ${{ inputs.connection-string-port }}
-    DbMigrationsSettings__ConnectionStringData__Database: ${{ inputs.connection-string-database }}
-    DbMigrationsSettings__ConnectionStringData__Username: ${{ inputs.connection-string-username }}
-    DbMigrationsSettings__ConnectionStringData__Password: ${{ inputs.connection-string-password }}
-    DbMigrationsSettings__AwsSecretManager__Region: ${{ inputs.aws-sm-region }}
-    DbMigrationsSettings__AwsSecretManager__DbCredentialsAccessKey: ${{ inputs.aws-sm-db-credentials-key }}
-    DbMigrationsSettings__MigrationsScriptsPath: ${{ inputs.migrations-scripts-path }}
-    DbMigrationsSettings__IdempotentScriptsPath: ${{ inputs.idempotent-scripts-path }}
+    AppSettings__ConnectionStringData__Host: ${{ inputs.connection-string-host }}
+    AppSettings__ConnectionStringData__Port: ${{ inputs.connection-string-port }}
+    AppSettings__ConnectionStringData__Database: ${{ inputs.connection-string-database }}
+    AppSettings__ConnectionStringData__Username: ${{ inputs.connection-string-username }}
+    AppSettings__ConnectionStringData__Password: ${{ inputs.connection-string-password }}
+    AppSettings__AwsSecretManager__Region: ${{ inputs.aws-sm-region }}
+    AppSettings__AwsSecretManager__DbCredentialsAccessKey: ${{ inputs.aws-sm-db-credentials-key }}
+    AppSettings__MigrationsScriptsPath: ${{ inputs.migrations-scripts-path }}
+    AppSettings__IdempotentScriptsPath: ${{ inputs.idempotent-scripts-path }}
