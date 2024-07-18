@@ -28,6 +28,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+
+      - name: Wait for PostgreSQL to be ready
+        run: sleep 30 # Add a delay to ensure PostgreSQL is fully ready
+
       - name: Run Migrations
         uses: ./
         with:
