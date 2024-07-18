@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["DbMigrationsConsole/DbMigrationsConsole.csproj", "DbMigrationsConsole/"]
+COPY ["src/DbMigrationsConsole/DbMigrationsConsole.csproj", "DbMigrationsConsole/"]
 RUN dotnet restore "DbMigrationsConsole/DbMigrationsConsole.csproj"
 COPY . .
 WORKDIR "/src/DbMigrationsConsole"
