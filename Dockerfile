@@ -14,4 +14,4 @@ FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 RUN ls -la .
-ENTRYPOINT ["./DbMigrationsConsole"] 
+ENTRYPOINT ["./DbMigrationsConsole.dll"] 
