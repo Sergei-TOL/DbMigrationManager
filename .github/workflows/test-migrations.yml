@@ -28,15 +28,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          while ! nc -z postgres 5432; do
-            echo "Waiting for PostgreSQL to start..."
-            sleep 1
-          done
-        timeout-minutes: 1
-
       - name: Run Migrations
         uses: ./
         with:
