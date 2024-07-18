@@ -12,6 +12,5 @@ RUN dotnet publish "DbMigrationsConsole.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN chmod +x DbMigrationsConsole
 RUN ls -la .
-ENTRYPOINT ["./DbMigrationsConsole"] 
+ENTRYPOINT ["dotnet", "DbMigrationsConsole.dll"]
