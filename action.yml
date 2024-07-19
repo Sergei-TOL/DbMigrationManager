@@ -32,7 +32,7 @@ inputs:
     default: "./db/idempotent-scripts"
 runs:
   using: docker
-  image: docker://ghcr.io/sergei-tol/DbMigrationManager:1
+  image: docker://ghcr.io/sergei-tol/dbmigrationmanager:latest
   env:
     AppSettings__ConnectionStringData__Host: ${{ inputs.connection-string-host }}
     AppSettings__ConnectionStringData__Port: ${{ inputs.connection-string-port }}
