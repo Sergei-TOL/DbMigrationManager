@@ -43,32 +43,14 @@ This action applies database migrations and idempotent scripts to a specified da
 ## Example usage
 
 ```yaml
-name: Test Migrations
+name: Apply migrations
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   test-migrations:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_DB: testdb
-          POSTGRES_PASSWORD: testpassword
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v3
@@ -79,16 +61,10 @@ jobs:
           connection-string-host: postgres
           connection-string-port: 5432
           connection-string-database: testdb
-          connection-string-username: postgres
-          connection-string-password: testpassword
+          # connection-string-username: postgres
+          # connection-string-password: testpassword
+          aws-sm-region: ca-central-1
+          aws-sm-db-credentials-key: some-key
           migrations-scripts-path: "./db/migrations-scripts"
           idempotent-scripts-path: "./db/idempotent-scripts"
-
-      - name: Verify Migrations
-        run: |
-          PGPASSWORD=testpassword psql -h localhost -U postgres -d testdb -c "
-            -- Check if the procedure and table was created
-            CALL insert_into_test_table('test_record');
-            SELECT * FROM test_table;
-          "
 ```
