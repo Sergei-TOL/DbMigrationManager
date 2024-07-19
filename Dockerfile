@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["DbMigrationsConsole/DbMigrationsConsole.csproj", "DbMigrationsConsole/"]
+COPY ["src/DbMigrationsConsole/DbMigrationsConsole.csproj", "DbMigrationsConsole/"]
 RUN dotnet restore "DbMigrationsConsole/DbMigrationsConsole.csproj"
-COPY . .
+COPY ./src .
 WORKDIR "/src/DbMigrationsConsole"
 RUN dotnet build "DbMigrationsConsole.csproj" -c Release -o /app/build
 
@@ -11,5 +11,6 @@ RUN dotnet publish "DbMigrationsConsole.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DbMigrationsConsole.dll"] 
+COPY --from=publish /app/publish /dbmm
+RUN ls -la /dbmm
+ENTRYPOINT ["dotnet", "/dbmm/DbMigrationsConsole.dll"]

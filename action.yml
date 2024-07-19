@@ -1,0 +1,45 @@
+name: "Database Migrations Action"
+description: "Applies database migrations and idempotent scripts to the database"
+inputs:
+  connection-string-host:
+    description: "Database host"
+    required: true
+  connection-string-port:
+    description: "Database port"
+    required: true
+  connection-string-database:
+    description: "Database name"
+    required: true
+  connection-string-username:
+    description: "Database username"
+    required: false
+  connection-string-password:
+    description: "Database password"
+    required: false
+  aws-sm-region:
+    description: "AWS Secret Manager region"
+    required: false
+  aws-sm-db-credentials-key:
+    description: "AWS Secret Manager key for database credentials in json: {username, password}"
+    required: false
+  migrations-scripts-path:
+    description: "Path to migration scripts"
+    required: true
+    default: "./db/migrations-scripts"
+  idempotent-scripts-path:
+    description: "Path to idempotent scripts (procedure, function, etc.) to be executed after migrations"
+    required: true
+    default: "./db/idempotent-scripts"
+runs:
+  using: docker
+  image: docker://ghcr.io/sergei-tol/dbmigrationmanager:latest
+  env:
+    AppSettings__ConnectionStringData__Host: ${{ inputs.connection-string-host }}
+    AppSettings__ConnectionStringData__Port: ${{ inputs.connection-string-port }}
+    AppSettings__ConnectionStringData__Database: ${{ inputs.connection-string-database }}
+    AppSettings__ConnectionStringData__Username: ${{ inputs.connection-string-username }}
+    AppSettings__ConnectionStringData__Password: ${{ inputs.connection-string-password }}
+    AppSettings__AwsSecretManager__Region: ${{ inputs.aws-sm-region }}
+    AppSettings__AwsSecretManager__DbCredentialsAccessKey: ${{ inputs.aws-sm-db-credentials-key }}
+    AppSettings__MigrationsScriptsPath: ${{ inputs.migrations-scripts-path }}
+    AppSettings__IdempotentScriptsPath: ${{ inputs.idempotent-scripts-path }}
